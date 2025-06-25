@@ -18,5 +18,3 @@ Any content that is not the property of Oracle (SQLcl and its associated materia
 1. Run the **buildrelease.ps1** script. Powershell 7.2 (or newer) is required.
 1. The MSI will be in "publish\unsigned\\<culture>".
 
-## Notes
-
