@@ -31,6 +31,7 @@ _ReSharper*/
 .idea/
 jre/
 sqlcl/
+publish/
 #Nuget packages folder
 packages/
 
