@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "sqlclinstaller", "sqlclinstaller\sqlclinstaller.wixproj", "{1CED5700-8BAD-4195-BE31-FCE455717F1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		directory.build.props = directory.build.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|ARM64.Build.0 = Debug|ARM64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|x64.ActiveCfg = Debug|x64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|x64.Build.0 = Debug|x64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|x86.ActiveCfg = Debug|x86
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Debug|x86.Build.0 = Debug|x86
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|ARM64.ActiveCfg = Release|ARM64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|ARM64.Build.0 = Release|ARM64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|x64.ActiveCfg = Release|x64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|x64.Build.0 = Release|x64
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|x86.ActiveCfg = Release|x86
+		{1CED5700-8BAD-4195-BE31-FCE455717F1D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {751BA99D-3350-4EF9-8721-498F713DAAC7}
+	EndGlobalSection
+EndGlobal

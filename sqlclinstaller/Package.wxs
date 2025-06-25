@@ -1,0 +1,38 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+	<?include "Include.wxi"?>
+	<Package Name="$(ProductName)" Language="1033" Version="$(ProductVersion)" Manufacturer="$(Manufacturer)" UpgradeCode="{7A4A42D9-448F-48D2-8C42-22C82830705F}" Scope="perMachine">
+		<SummaryInformation Description="Oracle SQLcl $(ProductVersion)" />
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+		<Upgrade Id="{7A4A42D9-448F-48D2-8C42-22C82830705F}">
+			<!-- This ensures upgrades select/deselect JRE install depending on existing install -->
+			<UpgradeVersion Maximum="$(ProductVersion)" MigrateFeatures="yes" Property="PRODUPGRADE" />
+		</Upgrade>
+		<MediaTemplate EmbedCab="yes" />
+		<!-- Set the install icon to whatever the SQLcl executable is using -->
+		<Icon Id="sql.exe" SourceFile="$(var.SolutionDir)\$(var.ReferenceExecutableFolder)\$(var.ReferenceExecutable)" />
+		<Property Id="ARPPRODUCTICON" Value="sql.exe" />
+		
+		<!-- Use the UI that allows features / install directory to be chosen-->
+		<WixVariable Id="WixUILicenseRtf" Value="oraclelicense.rtf" />
+		<UI Id="UI">
+			<ui:WixUI Id="WixUI_FeatureTree" />
+			<UIRef Id="WixUI_ErrorProgressText" />
+		</UI>
+		<!-- Broadcast envrionment (Path) changes to any processes that may be listening -->
+		<!-- These Custom Actions run after "InstallFinalize" -->
+		<util:BroadcastEnvironmentChange />
+		<util:BroadcastSettingChange />
+
+		<Feature Id="Main" Title="SQLcl $(ProductVersion)" Level="1" AllowAdvertise="no" InstallDefault="local" TypicalDefault="install" AllowAbsent="no" Description="SQLcl application." Display="expand" ConfigurableDirectory="INSTALLFOLDER" >
+			<Feature Id="SQLcl" Title="SQLcl required components" Level="1" InstallDefault="followParent" AllowAdvertise="no" TypicalDefault="install" AllowAbsent="no">
+				<ComponentGroupRef Id="SQLclComponents" />
+				<ComponentGroupRef Id="EnvironmentChanges"/>
+				<ComponentGroupRef Id="MainRegistryChanges"/>
+			</Feature>
+			<Feature Id="JRE" Title="Java Runtime Environment $(JREVersion)" Level="$(JREInstallLevel)" AllowAdvertise="no" TypicalDefault="install" InstallDefault="local" AllowAbsent="yes" Description="Local JRE for SQLcl" >
+				<ComponentGroupRef Id="JREComponents" />
+				<ComponentGroupRef Id="JRERegistryChanges"/>
+			</Feature>
+		</Feature>
+	</Package>
+</Wix>

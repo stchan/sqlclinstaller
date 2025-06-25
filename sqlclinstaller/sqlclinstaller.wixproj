@@ -1,0 +1,18 @@
+﻿<Project Sdk="WixToolset.Sdk/6.0.1">
+	<PropertyGroup Label="Globals">
+		<DefineConstants>ProductVersion=$(ProductVersion);Manufacturer=$(Company);ProductName=$(ProductName);</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+		<OutputName>$(ProductName)_$(ProductVersion)_$(Configuration)_$(Platform)</OutputName>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)'!='Debug' ">
+		<OutputName>$(ProductName)_$(ProductVersion)_$(Platform)</OutputName>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="Include.wxi" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="WixToolset.UI.wixext" Version="6.0.1" />
+		<PackageReference Include="WixToolset.Util.wixext" Version="6.0.1" />
+	</ItemGroup>
+</Project>

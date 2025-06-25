@@ -1,0 +1,46 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<?include "Include.wxi"?>
+	<Fragment>
+		<ComponentGroup Id="SQLclComponents" Directory="SQLCLFOLDER">
+			<Files Include="$(SolutionDir)sqlcl\**" >
+				<Exclude Files="$(SolutionDir)sqlcl\.gitkeep"></Exclude>
+			</Files>
+			<!-- this will never be installed (Condition is never true) - it's just here so we can get the file version of sql.exe -->
+			<Component Id="ReferenceExecutable" Guid="{37D57F66-0D01-491E-A772-8566AEA01A16}" Condition="1 = 0" Bitness="always64">
+				<File Id="ReferenceExe" KeyPath="yes" Source="$(var.SolutionDir)\$(var.ReferenceExecutableFolder)\$(var.ReferenceExecutable)" />
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="JREComponents" Directory="JREFOLDER">
+			<Files Include="$(SolutionDir)jre\**" >
+				<Exclude Files="$(SolutionDir)jre\.gitkeep"></Exclude>
+			</Files>
+			<!-- this will never be installed (Condition is never true) - it's just here so we can get the java.exe file version -->
+			<Component Id="JREReferenceExecutable" Guid="{366756B6-0E11-45BC-970B-5DCF06850818}" Condition="1 = 0" Bitness="always64">
+				<File Id="JREReferenceExecutable" KeyPath="yes" Source="$(SolutionDir)\$(JREReferenceExecutableFolder)\$(JREReferenceExecutable)" />
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="EnvironmentChanges" Directory="INSTALLFOLDER">
+			<Component Id="SystemPathUpdate" Guid="{84B1CE94-CF19-4EED-964F-09477D7D8C4F}">
+				<!-- add sqlcl to the system path -->
+				<Environment Id="SQLCLPATH" Name="PATH" Value="[SQLCLFOLDER]\bin" Permanent="no" Part="last" Action="set" System="yes" />
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="MainRegistryChanges" Directory="INSTALLFOLDER">
+			<Component Id="MainProductRegistryKey" Guid="{15D465E0-6D7C-4BE1-931B-0ADC650610FB}">
+				<RegistryKey Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" ForceDeleteOnUninstall="yes">
+					<RegistryValue Name="InstallDir" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes" />
+					<RegistryValue Name="Version" Type="string" Value="$(ProductVersion)" />
+					<!-- Version of sql.exe - may not match ${ProductVersion) because the product version may have been increased to indicate a new bundled JRE is included -->
+					<RegistryValue Name="OracleVersion" Type="string" Value="$(OracleVersion)" />
+				</RegistryKey>
+			</Component>
+		</ComponentGroup>
+		<ComponentGroup Id="JRERegistryChanges" Directory="INSTALLFOLDER">
+			<Component Id="JRERegistryKey" Guid="{1E07A189-D083-4C8F-B134-97BF3CEC095B}">
+				<RegistryKey Root="HKMU" Key="Software\[Manufacturer]\[ProductName]\JRE" ForceDeleteOnUninstall="yes">
+					<RegistryValue Name="Version" Type="string" Value="$(JREVersion)" />
+				</RegistryKey>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
