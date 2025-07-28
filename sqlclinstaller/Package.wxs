@@ -2,7 +2,7 @@
 	<?include "Include.wxi"?>
 	<Package Name="$(ProductName)" Language="1033" Version="$(ProductVersion)" Manufacturer="$(Manufacturer)" UpgradeCode="{7A4A42D9-448F-48D2-8C42-22C82830705F}" Scope="perMachine">
 		<SummaryInformation Description="Oracle SQLcl $(ProductVersion)" />
-		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" AllowSameVersionUpgrades="no" />
 		<Upgrade Id="{7A4A42D9-448F-48D2-8C42-22C82830705F}">
 			<!-- This ensures upgrades select/deselect JRE install depending on existing install -->
 			<UpgradeVersion Maximum="$(ProductVersion)" MigrateFeatures="yes" Property="PRODUPGRADE" />
