@@ -22,7 +22,7 @@
 		<ComponentGroup Id="EnvironmentChanges" Directory="INSTALLFOLDER">
 			<Component Id="SystemPathUpdate" Guid="{84B1CE94-CF19-4EED-964F-09477D7D8C4F}">
 				<!-- add sqlcl to the system path -->
-				<Environment Id="SQLCLPATH" Name="PATH" Value="[SQLCLFOLDER]\bin" Permanent="no" Part="last" Action="set" System="yes" />
+				<Environment Id="SQLCLPATH" Name="PATH" Value="[SQLCLFOLDER]bin" Permanent="no" Part="first" Action="set" System="yes" />
 			</Component>
 		</ComponentGroup>
 		<ComponentGroup Id="MainRegistryChanges" Directory="INSTALLFOLDER">
