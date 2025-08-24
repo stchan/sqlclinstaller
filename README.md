@@ -1,4 +1,4 @@
-# SQLcl (with optional JRE) Installer for Windows x64 - v25.1.1.113
+# SQLcl (with optional JRE) Installer for Windows x64
 Oracle does not provide a SQLcl installation package for Windows. This VS project will build an MSI for 64-bit Windows that will install SQLcl, an optional JRE, and update the system path.
 
 ## Disclaimers
