@@ -8,5 +8,8 @@
 				</Directory>
 			</Directory>
 		</StandardDirectory>
+		<StandardDirectory Id="CommonAppDataFolder">
+			<Directory Id="SQLCLPATHFOLDER" Name="$(ProductName)" />
+		</StandardDirectory>
 	</Fragment>
 </Wix>

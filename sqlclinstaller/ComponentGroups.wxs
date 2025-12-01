@@ -22,13 +22,14 @@
 		<ComponentGroup Id="EnvironmentChanges" Directory="INSTALLFOLDER">
 			<Component Id="SystemPathUpdate" Guid="{84B1CE94-CF19-4EED-964F-09477D7D8C4F}">
 				<!-- add sqlcl to the system path -->
-				<Environment Id="SQLCLPATH" Name="PATH" Value="[SQLCLFOLDER]bin" Permanent="no" Part="first" Action="set" System="yes" />
+				<Environment Id="SQLCLPATH" Name="PATH" Value="[SQLCLPATHFOLDER]$(ProductName)\bin" Permanent="no" Part="first" Action="set" System="yes" />
 			</Component>
 		</ComponentGroup>
 		<ComponentGroup Id="MainRegistryChanges" Directory="INSTALLFOLDER">
 			<Component Id="MainProductRegistryKey" Guid="{15D465E0-6D7C-4BE1-931B-0ADC650610FB}">
 				<RegistryKey Root="HKMU" Key="Software\[Manufacturer]\[ProductName]" ForceDeleteOnUninstall="yes">
 					<RegistryValue Name="InstallDir" Type="string" Value="[INSTALLFOLDER]" KeyPath="yes" />
+					<RegistryValue Name="EnvPathDir" Type="string" Value="[SQLCLPATHFOLDER]$(ProductName)\bin" />
 					<RegistryValue Name="Version" Type="string" Value="$(ProductVersion)" />
 					<!-- Version of sql.exe - may not match ${ProductVersion) because the product version may have been increased to indicate a new bundled JRE is included -->
 					<RegistryValue Name="OracleVersion" Type="string" Value="$(OracleVersion)" />

@@ -2,7 +2,7 @@
 	<?include "Include.wxi"?>
 	<Package Name="$(ProductName)" Language="1033" Version="$(ProductVersion)" Manufacturer="$(Manufacturer)" UpgradeCode="{7A4A42D9-448F-48D2-8C42-22C82830705F}" Scope="perMachine">
 		<SummaryInformation Description="Oracle SQLcl $(ProductVersion)" />
-		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" AllowSameVersionUpgrades="no" />
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" AllowSameVersionUpgrades="no" Schedule="afterInstallFinalize" />
 		<Upgrade Id="{7A4A42D9-448F-48D2-8C42-22C82830705F}">
 			<!-- This ensures upgrades select/deselect JRE install depending on existing install -->
 			<UpgradeVersion Maximum="$(ProductVersion)" MigrateFeatures="yes" Property="PRODUPGRADE" />
@@ -22,6 +22,21 @@
 		<!-- These Custom Actions run after "InstallFinalize" -->
 		<util:BroadcastEnvironmentChange />
 		<util:BroadcastSettingChange />
+
+		<!-- 
+			Custom Actions to create/remove symlink to the install folder in the ProgramData folder. 
+		    This is necessary because sql.exe can't handle spaces in the path to its classes, so we add the symlink folder to the system path instead.
+		-->
+		<SetProperty Id="CreateProgramDataSymlink" Value="&quot;[%ComSpec]&quot; /c IF NOT EXIST &quot;[SQLCLPATHFOLDER]&quot; mklink /D &quot;[SQLCLPATHFOLDER]&quot; &quot;[INSTALLFOLDER]&quot;" Before="CreateProgramDataSymlink" Sequence="execute" />
+		<CustomAction Id="CreateProgramDataSymlink" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixQuietExec" Execute="deferred" Impersonate="no" Return="check" />
+		<SetProperty Id="DeleteProgramDataSymlink" Value="&quot;[%ComSpec]&quot; /c rd &quot;[SQLCLPATHFOLDER]&quot;" Before="DeleteProgramDataSymlink" Sequence="execute" />
+		<CustomAction Id="DeleteProgramDataSymlink" BinaryRef="Wix4UtilCA_$(sys.BUILDARCHSHORT)" DllEntry="WixQuietExec" Execute="deferred" Impersonate="no" Return="ignore" />
+
+		<InstallExecuteSequence>
+			<!-- Only create symlink on INSTALL or UPGRADE -->
+			<Custom Action="CreateProgramDataSymlink" Before="InstallFinalize" Condition="(NOT Installed) OR (REINSTALL) OR (UPGRADINGPRODUCTCODE)" />
+			<Custom Action="DeleteProgramDataSymlink" Before="CreateProgramDataSymlink"  />
+		</InstallExecuteSequence>
 
 		<Feature Id="Main" Title="SQLcl $(ProductVersion)" Level="1" AllowAdvertise="no" InstallDefault="local" TypicalDefault="install" AllowAbsent="no" Description="SQLcl application." Display="expand" ConfigurableDirectory="INSTALLFOLDER" >
 			<Feature Id="SQLcl" Title="SQLcl required components" Level="1" InstallDefault="followParent" AllowAdvertise="no" TypicalDefault="install" AllowAbsent="no">
