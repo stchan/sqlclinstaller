@@ -4,9 +4,11 @@
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
 		<OutputName>$(ProductName)_$(ProductVersion)_$(Configuration)_$(Platform)</OutputName>
+		<InstallerPlatform>$(Platform)</InstallerPlatform>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)'!='Debug' ">
 		<OutputName>$(ProductName)_$(ProductVersion)_$(Platform)</OutputName>
+		<InstallerPlatform>$(Platform)</InstallerPlatform>
 	</PropertyGroup>
 	<ItemGroup>
 		<Content Include="Include.wxi" />

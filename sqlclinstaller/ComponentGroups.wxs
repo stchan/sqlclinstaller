@@ -7,16 +7,16 @@
 			</Files>
 			<!-- this will never be installed (Condition is never true) - it's just here so we can get the file version of sql.exe -->
 			<Component Id="ReferenceExecutable" Guid="{37D57F66-0D01-491E-A772-8566AEA01A16}" Condition="1 = 0" Bitness="always64">
-				<File Id="ReferenceExe" KeyPath="yes" Source="$(var.SolutionDir)\$(var.ReferenceExecutableFolder)\$(var.ReferenceExecutable)" />
+				<File Id="ReferenceExe" KeyPath="yes" Source="$(var.SolutionDir)$(var.ReferenceExecutableFolder)\$(var.ReferenceExecutable)" />
 			</Component>
 		</ComponentGroup>
 		<ComponentGroup Id="JREComponents" Directory="JREFOLDER">
-			<Files Include="$(SolutionDir)jre\**" >
-				<Exclude Files="$(SolutionDir)jre\.gitkeep"></Exclude>
+			<Files Include="$(SolutionDir)java\$(sys.BUILDARCH)\jre\**" >
+				<Exclude Files="$(SolutionDir)java\$(sys.BUILDARCH)\jre\.gitkeep"></Exclude>
 			</Files>
 			<!-- this will never be installed (Condition is never true) - it's just here so we can get the java.exe file version -->
 			<Component Id="JREReferenceExecutable" Guid="{366756B6-0E11-45BC-970B-5DCF06850818}" Condition="1 = 0" Bitness="always64">
-				<File Id="JREReferenceExecutable" KeyPath="yes" Source="$(SolutionDir)\$(JREReferenceExecutableFolder)\$(JREReferenceExecutable)" />
+				<File Id="JREReferenceExecutable" KeyPath="yes" Source="$(SolutionDir)java\$(sys.BUILDARCH)\$(JREReferenceExecutableFolder)\$(JREReferenceExecutable)" />
 			</Component>
 		</ComponentGroup>
 		<ComponentGroup Id="EnvironmentChanges" Directory="INSTALLFOLDER">
