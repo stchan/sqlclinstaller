@@ -1,10 +1,10 @@
 <Project>
 	<PropertyGroup>
 		<Company>Oracle</Company>
-		<Copyright>Copyright © Oracle 2025</Copyright>
+		<Copyright>Copyright © Oracle 2026</Copyright>
 		<AssemblyTrademark></AssemblyTrademark>
 		<AssemblyCulture></AssemblyCulture>
 		<ProductName>SQLcl</ProductName>
-		<ProductVersion>25.4.0.346</ProductVersion>
+		<ProductVersion>25.4.1.022</ProductVersion>
 	</PropertyGroup>
 </Project>
