@@ -37,10 +37,10 @@ if ($sign -ne "" -and $sign -ne $null)
             Write-Host $required found.
         }
 
-        $buildoutputpath = "$PSScriptRoot\publish\signed"
+        $buildoutputpath = "$PSScriptRoot\publish\$targetplatform\signed"
 }
 else {
-    $buildoutputpath = "$PSScriptRoot\publish\unsigned"
+    $buildoutputpath = "$PSScriptRoot\publish\$targetplatform\unsigned"
 }
 
 Set-Location -Path $PSScriptRoot
@@ -65,7 +65,7 @@ Set-Location -Path "$buildoutputpath\$((Get-Culture).Name)\"
 # compute hashes of the output
 $outputfiles = Get-ChildItem "."
 foreach ($outfile in $outputfiles) {
-    certutil -hashfile $outfile.Name sha512  | Out-File -Encoding utf8NoBOM  -FilePath "$outfile.sha512"
+    certutil -hashfile $outfile.Name sha256  | Out-File -Encoding utf8NoBOM  -FilePath "$outfile.sha256"
 }
 
 Set-Location -Path $startworkinglocation
