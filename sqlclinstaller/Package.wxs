@@ -1,6 +1,6 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui" xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
 	<?include "Include.wxi"?>
-	<Package Name="$(ProductName)" Language="1033" Version="$(ProductVersion)" Manufacturer="$(Manufacturer)" UpgradeCode="{7A4A42D9-448F-48D2-8C42-22C82830705F}" Scope="perMachine">
+	<Package Name="$(ProductPackageName)" Language="1033" Version="$(ProductVersion)" Manufacturer="$(Manufacturer)" UpgradeCode="{7A4A42D9-448F-48D2-8C42-22C82830705F}" Scope="perMachine">
 		<SummaryInformation Description="Oracle SQLcl $(ProductVersion)" />
 		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" AllowSameVersionUpgrades="no" Schedule="afterInstallFinalize" />
 		<Upgrade Id="{7A4A42D9-448F-48D2-8C42-22C82830705F}">

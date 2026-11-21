@@ -8,7 +8,7 @@ This installer is not an official Oracle release, and the Oracle corporation is 
 Any content that is not the property of Oracle (SQLcl and its associated material), and is the work of the author (@stchan) is MIT/X11 licensed.
 
 ## Tooling
-* Visual Studio 2022 (or later) with the [Heatwave](https://marketplace.visualstudio.com/items?itemName=FireGiant.FireGiantHeatWaveDev17) extension.
+* Visual Studio 2026 (or later) with the [Heatwave](https://marketplace.visualstudio.com/items?itemName=FireGiant.FireGiantHeatWaveDev17) extension.
 
 ## Building
 1. Download the latest **SQLcl zip** file from [here](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/).

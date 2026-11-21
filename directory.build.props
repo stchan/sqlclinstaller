@@ -5,6 +5,9 @@
 		<AssemblyTrademark></AssemblyTrademark>
 		<AssemblyCulture></AssemblyCulture>
 		<ProductName>SQLcl</ProductName>
-		<ProductVersion>26.1.2.132</ProductVersion>
+		<ProductPackageName>SQLcl with JRE</ProductPackageName>
+		<!-- used for the msi filename -->
+		<ProductShortName>sqlcl_jre</ProductShortName>
+		<ProductVersion>26.3.1.301</ProductVersion>
 	</PropertyGroup>
 </Project>
